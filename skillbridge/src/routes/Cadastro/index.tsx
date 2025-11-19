@@ -5,6 +5,8 @@ import type { IUsuario } from "../../types/tipoUsuario";
 
 interface ILoginData extends Pick<IUsuario, 'email' | 'senha'> {}
 
+const API_URL = "https://rm563654skillbridge.onrender.com/usuario/login"; // Assumindo um endpoint /login
+
 export default function Login() {
   const navigate = useNavigate();
 
@@ -12,13 +14,35 @@ export default function Login() {
     register, 
     handleSubmit, 
     formState: { errors, isSubmitting } 
-  } = useForm<ILoginData>({
-    mode: "onSubmit",
-    criteriaMode: "firstError",
-    shouldFocusError: true,
-  });
+  } = useForm<ILoginData>({ /* ... */ });
 
-  const onSubmit = () => { console.log("Submetendo...") };
+  const onSubmit: SubmitHandler<ILoginData> = async (data) => {
+    console.log("Dados de login a enviar:", data);
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) { 
+        alert("Login realizado com sucesso! Bem-vindo(a)!");
+        console.log("Resposta da API:", await response.json());
+        navigate('/dashboard'); 
+      } else if (response.status === 401) {
+        alert("Falha no login. E-mail ou senha incorretos.");
+      } else {
+        throw new Error(`Erro de servidor: ${response.status}`);
+      }
+
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      alert("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
+    }
+  };
 
   return (
     <FormContainer>
@@ -29,9 +53,10 @@ export default function Login() {
         Entre com suas credenciais para acessar sua área de requalificação.
       </p>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
 
-      </form>
+<form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
+      {/* ... */}
+    </form>
 
     </FormContainer>
   );

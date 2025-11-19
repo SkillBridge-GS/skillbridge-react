@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { IPerfil } from '../../types/tipoPerfil';
 import FormContainer from '../../components/Formulario/FormContainer';
-import PerfilForm from './PerfilForm'; 
+import PerfilForm from '../../components/Formulario/PerfilForm'; 
 
 const API_URL_BASE = "https://rm563654skillbridge.onrender.com/perfil/user";
 

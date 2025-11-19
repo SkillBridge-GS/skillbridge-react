@@ -10,16 +10,14 @@ import Home from './routes/Home/index.tsx'
 import Integrantes from './routes/Integrantes/index.tsx' 
 import Login from './routes/Login/index.tsx' 
 import Cadastro from './routes/Cadastro/index.tsx' 
-import Page404 from './routes/Error404/index.tsx'
-import Dashboard from './routes/Dashboard/index.tsx'
-import PerfilCriar from './routes/Perfil/PerfilCriar/index.tsx'
-import PerfilEditar from './routes/Perfil/PerfilEditar/index.tsx'
+import Error404 from './routes/Error404/index.tsx' 
+import Perfil from './routes/Perfil/index.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>, 
-    errorElement: <Page404/>,
+    errorElement: <Error404/>, 
     children: [ 
       {
         path: "/",
@@ -38,16 +36,8 @@ const router = createBrowserRouter([
         element: <Cadastro/>,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard/>,
-      },
-      {
-        path: "/perfil/criar/:id_usuario", 
-        element: <PerfilCriar/>,
-      },
-      {
-        path: "/perfil/editar/:id_perfil", 
-        element: <PerfilEditar/>,
+        path: "/perfil",
+        element: <Perfil/>, 
       },
       {
         path: "/old-page",
@@ -57,7 +47,7 @@ const router = createBrowserRouter([
   },
   {
       path: "*",
-      element: <Page404/>,
+      element: <Error404/>,
   }
 ]);
 

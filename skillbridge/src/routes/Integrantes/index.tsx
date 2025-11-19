@@ -26,7 +26,7 @@ const integrantesData = [
     rm: "563654",
     turma: "1TDSPH",
     githubUrl: "https://github.com/diogo2506",
-    linkedinUrl: "#",
+    linkedinUrl: "https://br.linkedin.com/in/diogo-oliveira-993367193",
     fotoUrl: DiogoFoto 
   },
 ];

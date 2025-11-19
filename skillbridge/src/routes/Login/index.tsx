@@ -17,35 +17,38 @@ const MOCK_LOGIN_CREDENCIAIS = {
   idUsuario: 1 
 };
 
+
 export default function Login() {
   const navigate = useNavigate();
+  
+  const onSubmit: SubmitHandler<ILoginData> = async (data) => {
+    if (data.email !== MOCK_LOGIN_CREDENCIAIS.email || data.senha !== MOCK_LOGIN_CREDENCIAIS.senha) {
+      alert("Credenciais inválidas. Use o e-mail: admin@gmail.com e a senha: admin");
+      return;
+    }
+    
+    try {
+      const response = await fetch(`${API_URL_BASE}/${MOCK_LOGIN_CREDENCIAIS.idUsuario}`);
 
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors, isSubmitting } 
-  } = useForm<ILoginData>({
-    mode: "onSubmit",
-    criteriaMode: "firstError",
-    shouldFocusError: true,
-  });
-
-  const onSubmit = () => {}; 
-
-  return (
-    <FormContainer>
-      <h2 className="text-3xl font-bold text-center text-blue-600 dark:text-blue-400">
-        Acesse sua conta
-      </h2>
-      <p className="text-center text-gray-600 dark:text-gray-400">
-        Use as credenciais de teste para entrar: **admin@gmail.com** e **admin**
-      </p>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
+      if (response.ok) {
+        const usuarioData = await response.json();
         
+        localStorage.setItem("authToken", "simulated_token_123"); 
+        localStorage.setItem("idUsuario", usuarioData.idUsuario.toString());
+        localStorage.setItem("nomeUsuario", usuarioData.nome);
 
-      </form>
+        alert(`Login realizado com sucesso, ${usuarioData.nome}!`);
+        navigate('/perfil'); 
 
-    </FormContainer>
-  );
+      } else {
+        alert("Erro ao buscar dados do usuário. O usuário de teste pode não ter sido criado na API (ID 1).");
+      }
+
+    } catch (error) {
+      console.error("Erro na requisição de login:", error);
+      alert("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
+    }
+  };
+
+  return (/* ... */)
 }

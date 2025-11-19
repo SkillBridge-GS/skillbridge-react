@@ -1,4 +1,3 @@
-// src/routes/Page404/index.tsx
 import { Link } from "react-router-dom";
 
 export default function Error404() {

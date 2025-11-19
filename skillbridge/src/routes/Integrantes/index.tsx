@@ -33,7 +33,7 @@ const integrantesData = [
 
 export default function Integrantes() {
   return (
-    <main className="min-h-[calc(100vh-10rem)] pt-20 pb-10 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <main className="min-h-[calc(100vh-10rem)] pt-0 pb-10 text-gray-900 dark:text-gray-100">
       <section className="max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-center mb-12 border-b pb-3 border-blue-600/50">
           Equipe - SkillBridge

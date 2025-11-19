@@ -1,1 +1,12 @@
-@import "tailwindcss";
+@import "tailwindcss"; 
+
+.dark-mode {
+    @apply bg-gray-900 text-gray-100; 
+}
+.light-mode {
+    @apply bg-gray-50 text-gray-900; 
+}
+
+.app-container {
+    @apply w-full min-h-screen flex flex-col justify-between transition-colors duration-500;
+}

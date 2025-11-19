@@ -4,7 +4,7 @@ export default function Home() {
       
       <section className="max-w-7xl mx-auto px-4 py-12 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-blue-600 dark:text-blue-400">
-          SkillBridge: Sua Ponte para o Futuro do Trabalho
+          Sua Ponte para o Futuro do Trabalho
         </h1>
         <p className="mt-4 text-xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
           Plataforma inteligente de requalificação profissional que usa IA para conectar suas habilidades

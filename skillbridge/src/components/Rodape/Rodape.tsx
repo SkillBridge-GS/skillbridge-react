@@ -1,19 +1,21 @@
-interface IRodapeProps {
-  texto: string; 
-}
+import { useTheme } from '../../contexts/ThemeContext';
 
-export default function Rodape({ texto }: IRodapeProps) {
+export default function Rodape() {
+  const { isDark } = useTheme();
+  const footerClass = isDark 
+    ? "bg-gray-800 text-white border-gray-700" 
+    : "bg-blue-900 text-white border-blue-900"; 
+
   return (
-    <footer className="w-full mt-auto py-4 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-600 dark:text-gray-400">
-        <p>
-          {texto} | Global Solution
+    <footer className={`p-4 w-full border-t shadow-inner ${footerClass}`}>
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
+        <p className="mb-1 sm:mb-0">
+          &copy; 2025 SkillBridge | Global Solution FIAP
+        </p>
+        <p className="text-center">
+          Desenvolvido com React, TypeScript e Tailwind CSS.
         </p>
       </div>
     </footer>
   );
-}
-
-Rodape.defaultProps = {
-  texto: "SkillBridge: Sua ponte para o futuro do trabalho."
 }

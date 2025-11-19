@@ -12,14 +12,19 @@ export default function Perfil() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   
-const idUsuario = localStorage.getItem('idUsuario'); 
+  // Obtem o ID do usuário logado
+  const idUsuario = localStorage.getItem('idUsuario'); 
 
+  // buscar o perfil ao carregar a página
   useEffect(() => {
     if (!idUsuario) {
-      return;
+        alert("Você precisa estar logado para acessar seu perfil.");
+        navigate('/login');
+        return;
     }
     setIsLogged(true);
 
+    // Busca o perfil do usuário na API 
     const fetchPerfil = async () => {
       try {
         const response = await fetch(`${API_URL_BASE}/${idUsuario}`);
@@ -33,10 +38,32 @@ const idUsuario = localStorage.getItem('idUsuario');
       } catch (error) {
         console.error("Erro ao buscar perfil:", error);
       } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
     fetchPerfil();
-  }, [idUsuario, navigate]);
-  
+  }, [idUsuario, navigate]); 
+
+  if (isLoading || !isLogged) {
+    return (
+        <FormContainer>
+            <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400 text-center">
+                Carregando Perfil...
+            </h2>
+            <p className="text-center text-gray-600 dark:text-gray-400">
+                Aguarde a conexão com o servidor.
+            </p>
+        </FormContainer>
+    );
+  }
+
+  return (
+    <FormContainer>
+      <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400 text-center">
+        {perfil ? 'Editar Seu Perfil' : 'Crie Seu Perfil de Requalificação'}
+      </h2>
+      <PerfilForm initialData={perfil} idUsuario={Number(idUsuario)} />
+    </FormContainer>
+  );
+}

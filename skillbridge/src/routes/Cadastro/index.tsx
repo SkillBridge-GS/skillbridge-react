@@ -1,23 +1,26 @@
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import FormContainer from "../../components/Formulario/FormContainer";
 import type { IUsuario } from "../../types/tipoUsuario"; 
 
-interface ILoginData extends Pick<IUsuario, 'email' | 'senha'> {}
+// URL API
+const API_URL = "https://rm563654skillbridge.onrender.com/usuario";
 
-const API_URL = "https://rm563654skillbridge.onrender.com/usuario/login"; // Assumindo um endpoint /login
-
-export default function Login() {
+export default function Cadastro() {
   const navigate = useNavigate();
-
+  
   const { 
     register, 
     handleSubmit, 
     formState: { errors, isSubmitting } 
-  } = useForm<ILoginData>({ /* ... */ });
+  } = useForm<IUsuario>({
+    mode: "onSubmit",
+    criteriaMode: "firstError",
+    shouldFocusError: true, 
+  });
 
-  const onSubmit: SubmitHandler<ILoginData> = async (data) => {
-    console.log("Dados de login a enviar:", data);
+  const onSubmit: SubmitHandler<IUsuario> = async (data) => {
+    console.log("Dados a enviar:", data);
 
     try {
       const response = await fetch(API_URL, {
@@ -28,12 +31,12 @@ export default function Login() {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) { 
-        alert("Login realizado com sucesso! Bem-vindo(a)!");
-        console.log("Resposta da API:", await response.json());
-        navigate('/dashboard'); 
-      } else if (response.status === 401) {
-        alert("Falha no login. E-mail ou senha incorretos.");
+      if (response.ok || response.status === 201) { 
+        alert("Cadastro realizado com sucesso! Faça login para continuar.");
+        navigate('/login'); 
+      } else if (response.status === 400) {
+        alert("Falha no cadastro. Verifique os dados fornecidos.");
+        console.error("Erro 400 - Dados Inválidos", await response.json());
       } else {
         throw new Error(`Erro de servidor: ${response.status}`);
       }
@@ -47,16 +50,33 @@ export default function Login() {
   return (
     <FormContainer>
       <h2 className="text-3xl font-bold text-center text-blue-600 dark:text-blue-400">
-        Bem-vindo(a) de volta!
+        Crie sua conta SkillBridge
       </h2>
       <p className="text-center text-gray-600 dark:text-gray-400">
-        Entre com suas credenciais para acessar sua área de requalificação.
+        Preencha seus dados para começar sua requalificação.
       </p>
 
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="nome">
+            Nome Completo
+          </label>
+          <input 
+            id="nome"
+            type="text" 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            {...register("nome", { 
+              required: "O nome é obrigatório.",
+            minLength: { value: 3, message: "Mínimo 3 caracteres." }
+            })}
+          />
 
-<form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
-    </form>
-<div>
+          {errors.nome && <small className="text-red-500 block mt-1">{errors.nome.message}</small>}
+        </div>
+
+
+        <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="email">
             E-mail
           </label>
@@ -75,6 +95,7 @@ export default function Login() {
           {errors.email && <small className="text-red-500 block mt-1">{errors.email.message}</small>}
         </div>
         
+
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="senha">
             Senha
@@ -90,6 +111,43 @@ export default function Login() {
           />
           {errors.senha && <small className="text-red-500 block mt-1">{errors.senha.message}</small>}
         </div>
+
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="idade">
+            Idade
+          </label>
+          <input 
+            id="idade"
+            type="number"
+            min={16} 
+            max={100} 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            {...register("idade", { 
+              required: "A idade é obrigatória.",
+              valueAsNumber: true, 
+              min: { value: 16, message: "Idade mínima 16 anos." },
+              max: { value: 100, message: "Idade máxima 100 anos." }
+            })}
+          />
+          {errors.idade && <small className="text-red-500 block mt-1">{errors.idade.message}</small>}
+        </div>
+        
+        <button
+          type="submit"
+          disabled={isSubmitting} 
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors"
+        >
+          {isSubmitting ? "Cadastrando..." : "Cadastrar"}
+        </button>
+      </form>
+
+      <div className="text-center text-sm">
+        Já tem conta? 
+        <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline ml-1">
+          Faça login
+        </Link>
+      </div>
     </FormContainer>
   );
 }

@@ -43,7 +43,17 @@ export default function Home() {
               <li>Gestão de Talentos.</li>
             </ul>
           </div>
-          
+
+          <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 md:col-span-2 lg:col-span-1">
+            <h3 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-3">🤖 Tecnologia e Inovação</h3>
+            <ul className="list-disc ml-5 space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Machine Learning e Análise Preditiva.</li>
+              <li>Mapeamento automático de competências (NLP).</li>
+              <li>Recomendações de aprendizado dinâmicas.</li>
+              <li>Ambiente ético e centrado no ser humano.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
     </main>

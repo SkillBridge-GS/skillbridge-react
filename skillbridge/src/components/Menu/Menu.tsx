@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"; 
-import { useTheme } from "../../../contexts/ThemeContext";
-import { ThemeToggleButton } from "../../ThemeBotao/ThemeBotao";
+import { useTheme } from "../../contexts/ThemeContext";
+import { ThemeToggleButton } from "../../components/ThemeBotao/ThemeBotao";
 
 export default function Menu() {
   const { theme } = useTheme();

@@ -55,9 +55,41 @@ export default function Login() {
 
 
 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
-      {/* ... */}
     </form>
-
+<div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="email">
+            E-mail
+          </label>
+          <input 
+            id="email"
+            type="email" 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            {...register("email", { 
+              required: "O e-mail é obrigatório.",
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: "Formato de e-mail inválido."
+              }
+            })}
+          />
+          {errors.email && <small className="text-red-500 block mt-1">{errors.email.message}</small>}
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="senha">
+            Senha
+          </label>
+          <input 
+            id="senha"
+            type="password" 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            {...register("senha", { 
+              required: "A senha é obrigatória.",
+              minLength: { value: 6, message: "Mínimo 6 caracteres." }
+            })}
+          />
+          {errors.senha && <small className="text-red-500 block mt-1">{errors.senha.message}</small>}
+        </div>
     </FormContainer>
   );
 }

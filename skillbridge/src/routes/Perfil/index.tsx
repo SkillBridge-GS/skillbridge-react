@@ -1,4 +1,3 @@
-// src/routes/Perfil/index.tsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { IPerfil } from '../../types/tipoPerfil';
@@ -13,19 +12,31 @@ export default function Perfil() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   
-  // Obtem o ID do usuário 
-  const idUsuario = localStorage.getItem('idUsuario'); 
+const idUsuario = localStorage.getItem('idUsuario'); 
 
-  // buscar o perfil ao carregar a página
   useEffect(() => {
     if (!idUsuario) {
-      alert("Você precisa estar logado para acessar seu perfil.");
-      navigate('/login');
       return;
     }
     setIsLogged(true);
 
+    const fetchPerfil = async () => {
+      try {
+        const response = await fetch(`${API_URL_BASE}/${idUsuario}`);
+        
+        if (response.ok) {
+          const data: IPerfil[] = await response.json();
+          if (data && data.length > 0) {
+            setPerfil(data[0]); 
+          }
+        } 
+      } catch (error) {
+        console.error("Erro ao buscar perfil:", error);
+      } finally {
+        setIsLoading(false); 
+      }
+    };
 
-    const fetchPerfil = () => { /* ... */ }; 
     fetchPerfil();
-  }, [idUsuario, navigate]); 
+  }, [idUsuario, navigate]);
+  

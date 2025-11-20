@@ -12,9 +12,6 @@ export default function Rodape() {
         <p className="mb-1 sm:mb-0">
           &copy; 2025 SkillBridge | Global Solution FIAP
         </p>
-        <p className="text-center">
-          Desenvolvido com React, TypeScript e Tailwind CSS.
-        </p>
       </div>
     </footer>
   );

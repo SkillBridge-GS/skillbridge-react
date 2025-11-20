@@ -134,20 +134,19 @@ export default function Cadastro() {
         </div>
         
         <button
-          type="submit"
-          disabled={isSubmitting} 
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors"
-        >
-          {isSubmitting ? "Cadastrando..." : "Cadastrar"}
-        </button>
-      </form>
+          type="submit"
+          disabled={isSubmitting} 
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors">
+          {isSubmitting ? "Cadastrando..." : "Cadastrar"}
+        </button>
+      </form>
 
-      <div className="text-center text-sm">
-        Já tem conta? 
-        <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline ml-1">
-          Faça login
-        </Link>
-      </div>
-    </FormContainer>
+      <div className="text-center text-sm text-gray-700 dark:text-gray-100 transition-colors">
+        Já tem conta? 
+        <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline ml-1 transition-colors">
+          Faça login
+        </Link>
+      </div>
+    </FormContainer>
   );
 }

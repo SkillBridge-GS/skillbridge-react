@@ -8,7 +8,7 @@ export default function Rodape() {
 
   return (
     <footer className={`p-4 w-full border-t shadow-inner ${footerClass}`}>
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-center items-center text-sm">
         <p className="mb-1 sm:mb-0">
           &copy; 2025 SkillBridge | Global Solution FIAP
         </p>

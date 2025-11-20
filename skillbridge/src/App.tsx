@@ -12,11 +12,9 @@ export default function App() {
     <div className={`app-container ${themeClass}`}>
       
       <Menu /> 
-      
       <div className="grow pt-16"> 
           <Outlet />
       </div>
-      
       <Rodape />
     </div>
   )

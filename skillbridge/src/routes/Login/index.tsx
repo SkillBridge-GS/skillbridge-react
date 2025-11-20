@@ -1,14 +1,14 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import FormContainer from "../../components/Formulario/FormContainer";
-import type { IUsuario } from "../../types/tipoUsuario"; // Importa o tipo completo
+import type { IUsuario } from "../../types/tipoUsuario"; 
 
 interface ILoginData {
   email: string;
   senha: string;
 }
 
-const API_URL_BUSCA_TODOS = "https://rm563654skillbridge.onrender.com/usuario";
+const API_URL_USUARIOS = "https://rm563654skillbridge.onrender.com/usuario";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Login() {
     console.log("Tentando logar com:", formData.email);
 
     try {
-      const response = await fetch(API_URL_BUSCA_TODOS);
+      const response = await fetch(API_URL_USUARIOS);
 
       if (!response.ok) {
          alert("Não foi possível carregar a lista de usuários da API para validação.");
@@ -60,24 +60,25 @@ export default function Login() {
 
   return (
     <FormContainer>
-      <h2 className="text-3xl font-bold text-center text-blue-600 dark:text-blue-400">
+      <h2 className="text-3xl font-bold text-center text-blue-600 transition-colors">
         Acesse sua conta
       </h2>
-      <p className="text-center text-gray-600 dark:text-gray-400">
+      <p className="text-center text-gray-600 transition-colors">
         Use o e-mail e senha cadastrado.
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate> 
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="email">
+          <label className="block text-sm font-medium text-gray-700 transition-colors" htmlFor="email">
             E-mail
           </label>
           <input 
             id="email"
             type="email" 
-            placeholder="seu.email@exemplo.com"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Seu E-mail"
+            className="mt-1 block w-full px-3 py-2 border  border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
+                       bg-white dark:bg-gray-700  text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors"
             {...register("email", { 
               required: "O e-mail é obrigatório."
             })}
@@ -86,14 +87,15 @@ export default function Login() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="senha">
+          <label className="block text-sm font-medium text-gray-700 transition-colors" htmlFor="senha">
             Senha
           </label>
           <input 
             id="senha"
             type="password" 
             placeholder="Sua senha"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border  border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors"
             {...register("senha", { 
               required: "A senha é obrigatória."
             })}
@@ -110,9 +112,9 @@ export default function Login() {
         </button>
       </form>
 
-      <div className="text-center text-sm">
+      <div className="text-center text-sm transition-colors text-gray-700 dark:text-gray-100">
         Não tem conta? 
-        <Link to="/cadastro" className="text-blue-600 dark:text-blue-400 hover:underline ml-1">
+        <Link to="/cadastro" className="text-blue-600 dark:text-blue-400 hover:underline ml-1 transition-colors">
           Cadastre-se
         </Link>
       </div>

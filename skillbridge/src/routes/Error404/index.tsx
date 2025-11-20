@@ -8,7 +8,7 @@ export default function Error404() {
         Ops! Página não encontrada.
       </p>
       <p className="mt-2 text-gray-500 dark:text-gray-400">
-        Parece que você seguiu um link inválido ou a página foi desativada.
+        Link inválido ou a página foi desativada.
       </p>
       <Link to="/" className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
         Voltar para a Home

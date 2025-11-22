@@ -114,7 +114,7 @@ Este projeto foi desenvolvido pela equipe [**SkillBridge**] para a Global Soluti
 
 # Screenshots / Demonstração 
 
-**LINK DO VÍDEO NO YOUTUBE (DEMONSTRAÇÃO DO PROJETO):** `[INSIRA O LINK DO VÍDEO DE ATÉ 3 MINUTOS AQUI]`
+**LINK DO VÍDEO NO YOUTUBE (DEMONSTRAÇÃO DO PROJETO):** `[https://youtu.be/2BoZV-uS8MI]`
 
 * <a href="https://ibb.co/x8hFRvkY"><img src="https://i.ibb.co/zHs60cMF/D3-DC61-AA-B7-E0-4158-9359-C12301717770.png" alt="D3-DC61-AA-B7-E0-4158-9359-C12301717770" border="0"></a>
 

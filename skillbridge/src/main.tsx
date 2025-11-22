@@ -13,6 +13,7 @@ import Cadastro from './routes/Cadastro/index.tsx'
 import Error404 from './routes/Error404/index.tsx' 
 import Perfil from './routes/Perfil/index.tsx'
 import FAQ from './routes/FAQ/index.tsx';
+import Sobre from './routes/Sobre/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/faq",
         element: <FAQ />, 
+      },
+            {
+        path: "/sobre",
+        element: <Sobre />, 
       },
       {
         path: "/integrantes",

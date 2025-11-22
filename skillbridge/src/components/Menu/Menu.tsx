@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
 import { ThemeToggleButton } from "../../components/ThemeBotao/ThemeBotao";
 
-
 export default function Menu() {
   useTheme(); 
   const [menuAberto, setMenuAberto] = useState(false); 
 
-  // Classes para o fundo do menu
   const menuBgClass = "bg-white/50 dark:bg-gray-900/90";
   const linkTextColorClass = "text-gray-900 hover:bg-gray-100";
   const darkLinkTextColorClass = "dark:text-gray-100 dark:hover:bg-gray-700";
@@ -27,8 +25,15 @@ export default function Menu() {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link to="/" className={`px-3 py-2 rounded-md text-sm font-medium ${linkTextColorClass} ${darkLinkTextColorClass} transition-colors`}>Home</Link>
+                
+                <Link to="/sobre" className={`px-3 py-2 rounded-md text-sm font-medium ${linkTextColorClass} ${darkLinkTextColorClass} transition-colors`}>Sobre</Link>
+                
                 <Link to="/integrantes" className={`px-3 py-2 rounded-md text-sm font-medium ${linkTextColorClass} ${darkLinkTextColorClass} transition-colors`}>Integrantes</Link>
+                
+                <Link to="/faq" className={`px-3 py-2 rounded-md text-sm font-medium ${linkTextColorClass} ${darkLinkTextColorClass} transition-colors`}>FAQ</Link>
+                
                 <Link to="/login" className={`px-3 py-2 rounded-md text-sm font-medium ${linkTextColorClass} ${darkLinkTextColorClass} transition-colors`}>Login</Link>
+                
                 <Link to="/cadastro" className="text-white bg-blue-600 px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">Cadastre-se</Link>
               </div>
             </div>
@@ -51,8 +56,15 @@ export default function Menu() {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
           
           <Link to="/" className={`w-full text-center px-3 py-2 rounded-md text-base font-medium ${linkTextColorClass} ${darkLinkTextColorClass}`}>Home</Link>
+          
+          <Link to="/sobre" className={`w-full text-center px-3 py-2 rounded-md text-base font-medium ${linkTextColorClass} ${darkLinkTextColorClass}`}>Sobre</Link>
+          
           <Link to="/integrantes" className={`w-full text-center px-3 py-2 rounded-md text-base font-medium ${linkTextColorClass} ${darkLinkTextColorClass}`}>Integrantes</Link>
+          
+          <Link to="/faq" className={`w-full text-center px-3 py-2 rounded-md text-base font-medium ${linkTextColorClass} ${darkLinkTextColorClass}`}>FAQ</Link>
+          
           <Link to="/login" className={`w-full text-center px-3 py-2 rounded-md text-base font-medium ${linkTextColorClass} ${darkLinkTextColorClass}`}>Login</Link>
+          
           <Link to="/cadastro" className="w-full text-center text-white bg-blue-600 px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700 transition-colors">Cadastre-se</Link>
         
         </div>

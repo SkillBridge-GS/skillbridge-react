@@ -129,5 +129,5 @@ Este projeto foi desenvolvido pela equipe [**SkillBridge**] para a Global Soluti
 | Nome | RM | Turma | GitHub |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Lucas Tavares Dagrosa** | [563424] | 1TDSPG | 
-| **Leonardo Zerbinatti** | [67890] | 1TDSPH |
+| **Leonardo Zerbinatti** | [562992] | 1TDSPH |
 | **Diogo Cunha** | [563654] | 1TDSPH |

@@ -102,6 +102,7 @@ A arquitetura segue o padrão modular para escalabilidade:
 | `/cadastro` | Cadastro | **POST** `/usuario` | Criação de novo usuário. |
 | `/login` | Login | **GET** `/usuario` | Autenticação (validação de credenciais). |
 | `/perfil` | Perfil CRUD | **GET, POST, PUT, DELETE** `/perfil` | Gerenciamento de dados de Requalificação. |
+| `/faq` | FAQ | N/A | Perguntas Frequentes. |
 
 ---
 

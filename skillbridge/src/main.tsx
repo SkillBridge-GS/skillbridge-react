@@ -12,6 +12,7 @@ import Login from './routes/Login/index.tsx'
 import Cadastro from './routes/Cadastro/index.tsx' 
 import Error404 from './routes/Error404/index.tsx' 
 import Perfil from './routes/Perfil/index.tsx'
+import FAQ from './routes/FAQ/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>, 
+      },
+      {
+        path: "/faq",
+        element: <FAQ />, 
       },
       {
         path: "/integrantes",
